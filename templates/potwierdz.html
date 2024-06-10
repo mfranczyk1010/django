@@ -1,0 +1,10 @@
+{% extends 'glowny.html' %}
+{% block tytul %} Nowy Film {% endblock%}
+{% block strona %}
+    <h1>czy na pewno chcessz usunac tablet {{produkt.model}}?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-success" type="submit">Usuń</button>
+</form>
+<a class="btn btn-danger" href="{% url 'wszystkie_tablety' %}"><i class="fa-solid fa-chevron-left"></i> Cofnij</a><br>
+{% endblock %}

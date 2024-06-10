@@ -1,0 +1,44 @@
+{% extends 'glowny.html' %}
+{% block tytul %}  lista produktow{% endblock%}
+{% block strona %}
+{% if user.is_authenticated %}
+<h1>Witaj {{ user.username }}</h1>
+   <br>
+<a href="{% url 'logout' %}"><button class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Logout</button></a>
+{% else %}
+    <a href="{% url 'login' %}"><button class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Login</button></a>
+{% endif %}
+    <hr>
+
+ <a class="btn btn-success" href="{% url 'nowy_tablet' %}"><i class="fa-solid fa-plus"></i> Dodaj nowy tablet</a><br>
+
+
+<div>
+           {% if produkty|length == 0 %}
+        <h1>Brak produktow</h1>
+    {% else %}
+        <h1>Liczba produktów: {{produkty|length}}</h1>
+
+        {% for produkt in produkty %}
+            <div class="d-flex flex-row" style="">
+
+      <div class="card" style="width: 18rem;"  >
+        <img src="../../media/{{produkt.zdjecie}}" class="img-fluid rounded-start" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{produkt.producent }}</h5>
+            <p class="card-text">{{produkt.model}}</p>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ produkt.opis}}</li>
+                </ul>
+            <div class="card-body">
+                <a class="btn btn-primary" href="{% url 'edytuj_tablet' produkt.id %}"><i class="fa-solid fa-right-to-bracket"></i>Edytuj</a>
+                <a class="btn btn-danger" href="{% url 'usun_tablet' produkt.id %}"><i class="fa-solid fa-right-to-bracket"></i>Usuń</a>
+            </div>
+        </div>
+        {% endfor %}
+            {% endif %}
+    </div>
+
+        </div>
+{% endblock %}

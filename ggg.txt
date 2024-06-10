@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;">
+ <img src="../../media/{{produkt.zdjecie}}" class="img-fluid rounded-start" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{produkt.producent }}</h5>
+    <p class="card-text">{{produkt.opis}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ produkt.model}}</li>
+
+  </ul>
+  <div class="card-body">
+    <a class="btn btn-primary" href="{% url 'edytuj_tablet' produkt.id %}"><i class="fa-regular fa-pen-to-square"></i> Edytuj</a>
+    <a class="btn btn-danger" href="{% url 'usun_tablet' produkt.id %}"><i class="fa-regular fa-trash-can"></i> Usuń</a>
+  </div>
+</div>
